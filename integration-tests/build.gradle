@@ -12,8 +12,6 @@ subprojects {
 
     tomcatRunWar {
         webApp = file("../../web/build/libs/web-${version}.war")
-        httpPort = 9099
-        contextPath = '/'
     }
     [tomcatRunWar, tomcatStop]*.stopPort = 9088
     [tomcatRunWar, tomcatStop]*.stopKey = 'stopKey'

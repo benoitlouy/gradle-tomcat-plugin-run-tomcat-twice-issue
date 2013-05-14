@@ -1,1 +1,5 @@
 apply plugin: 'war'
+
+dependencies {
+    compile group: 'org.pegdown', name: 'pegdown', version: '1.2.1'
+}
