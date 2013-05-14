@@ -1,0 +1,5 @@
+tomcatRunWar {
+    doFirst {
+        System.setProperty('spring.profiles.active', 'ftaLocalModeA')
+    }
+}

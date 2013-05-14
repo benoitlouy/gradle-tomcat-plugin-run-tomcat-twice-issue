@@ -1,0 +1,14 @@
+allprojects {
+    apply plugin: 'maven'
+    
+    group = 'com.github.davidnortonjr.gradleproblem'
+    version = '1.0.0-SNAPSHOT'
+}
+
+subprojects {
+	apply plugin:'groovy'
+
+	repositories{
+	    mavenCentral() 
+	}
+}

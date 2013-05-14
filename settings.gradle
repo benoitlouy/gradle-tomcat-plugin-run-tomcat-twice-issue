@@ -1,0 +1,1 @@
+include ':web', ':integration-tests', ':integration-tests:mode-a', ':integration-tests:mode-b'

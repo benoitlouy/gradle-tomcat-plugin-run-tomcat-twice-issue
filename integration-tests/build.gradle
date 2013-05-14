@@ -1,0 +1,39 @@
+buildscript {
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:0.9.8'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+subprojects {
+    apply plugin: 'tomcat'
+
+    tomcatRunWar {
+        webApp = file("../../web/build/libs/web-${version}.war")
+        httpPort = 9099
+        contextPath = '/'
+    }
+    [tomcatRunWar, tomcatStop]*.stopPort = 9088
+    [tomcatRunWar, tomcatStop]*.stopKey = 'stopKey'
+
+    test {
+        doFirst {
+            tomcatRunWar {
+                daemon = true
+            }.execute()
+        }
+        doLast {
+            System.clearProperty('spring.profiles.active')
+            tomcatStop.execute()
+        }
+    }
+
+    dependencies {
+        def tomcatVersion = '7.0.40'
+        tomcat group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: tomcatVersion
+        tomcat group: 'org.apache.tomcat.embed', name: 'tomcat-embed-logging-juli', version: tomcatVersion
+        tomcat group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: tomcatVersion
+    }
+}
