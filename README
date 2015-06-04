@@ -1,0 +1,2 @@
+To reproduce the issue run:
+./gradlew :web:war integrationTest
